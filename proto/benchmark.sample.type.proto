@@ -1,4 +1,0 @@
-package benchmark.sample.type;
-// messageCode = 001
-message  Type {
-}

@@ -1,0 +1,12 @@
+package my_app.sample.type;
+// messageCode = 1
+message Pong {
+    required int32 FirstLittleId = 1;
+    required int32 SecondLittleId = 2;
+    optional int64 LongId = 3;
+}
+
+// messageCode = 2
+message FactResp {
+    required int32 resp = 1;
+}

@@ -1,14 +1,14 @@
 %% -*- mode:erlang -*-
 
--ifndef(HEADER_BENCHMARK).
--define(HEADER_BENCHMARK, true).
+-ifndef(HEADER_MY_APP).
+-define(HEADER_MY_APP, true).
 
-%% -define(RAND_RANGE(From, To), my_app_utils:get_rand_range(From, To)).
-%% -define(RAND_DEC(ByteSize), my_app_utils:get_rand_dec(ByteSize)).
-%% -define(RAND_HEX(ByteSize), my_app_utils:get_rand_hex(ByteSize)).
-%% -define(RAND_STR(Size), my_app_utils:get_rand_str(Size)).
-%% -define(RAND_BIN(Size), my_app_utils:get_rand_bin(Size)).
-%% -define(UUID(), my_app_utils:get_uuid()).
+-define(RAND_RANGE(From, To), my_app_utils:get_rand_range(From, To)).
+-define(RAND_DEC(ByteSize), my_app_utils:get_rand_dec(ByteSize)).
+-define(RAND_HEX(ByteSize), my_app_utils:get_rand_hex(ByteSize)).
+-define(RAND_STR(Size), my_app_utils:get_rand_str(Size)).
+-define(RAND_BIN(Size), my_app_utils:get_rand_bin(Size)).
+-define(UUID(), my_app_utils:get_uuid()).
 
 
 -define(NOW_SEC(), erlang:system_time(seconds)).

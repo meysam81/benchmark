@@ -1,0 +1,10 @@
+package my_app.sample.func;
+import "my_app.sample.type.proto";
+// messageCode = 51
+message Ping {
+}
+
+// messageCode = 52
+message Fact {
+    required int32 N = 1;
+}

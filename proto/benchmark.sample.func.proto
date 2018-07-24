@@ -1,5 +1,0 @@
-package benchmark.sample.func;
-import "benchmark.sample.type.proto";
-// messageCode = 101
-message Call {
-}
