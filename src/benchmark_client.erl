@@ -27,17 +27,34 @@ start_link() ->
 %%%===================================================================
 init([]) ->
     {ok, #state{}}.
-handle_call({ping, ToveriRef}, _From, State) ->
-    {ok, Pid} = toveri:get_pid(ToveriRef),
-    gen_server:call(Pid, ping),
-    {noreply, State#state{request_type = ping}};
-handle_call({fact, ToveriRef}, _From, State) ->
-    {ok, Pid} = toveri:get_pid(ToveriRef),
-    gen_server:call(Pid, fact),
-    {noreply, State#state{request_type = fact}};
+
+
+
+
 handle_call(_Request, _From, State) ->
     Reply = ok,
     {reply, Reply, State}.
+
+
+
+
+
+handle_cast({ping, ToveriRef}, State) ->
+    {ok, Pid} = toveri:get_pid(ToveriRef),
+
+
+    gen_server:cast(Pid, {ping, self()}),
+
+
+    {noreply, State#state{request_type = ping}};
+handle_cast({fact, ToveriRef}, State) ->
+    {ok, Pid} = toveri:get_pid(ToveriRef),
+
+
+    gen_server:cast(Pid, {fact, self()}),
+
+
+    {noreply, State#state{request_type = fact}};
 handle_cast(#ingw_message{object = Obj},
             #state{request_type = ReqType} = State) ->
     case Obj of
@@ -48,14 +65,27 @@ handle_cast(#ingw_message{object = Obj},
         _ ->
             Result = false
     end,
+
+
     ?LOG_INFO("I'm ~p, I asked for ~p, and got ~p",
               [self(), ReqType, Result]),
+
+
     {noreply, State};
 handle_cast(_Request, State) ->
     ?LOG_DEBUG("Request: ~p", [_Request]),
     {noreply, State}.
+
+
+
+
+
 handle_info(_Info, State) ->
     {noreply, State}.
+
+
+
+
 terminate(_Reason, _State) ->
     ok.
 code_change(_OldVsn, State, _Extra) ->

@@ -94,16 +94,15 @@ handle_cast(_Request, State) ->
 
 %% ------------------------- info -----------------------------------
 handle_info({tcp, _Socket, BinObj}, #state{client = Client} = State) ->
+
     {ok, #ingw_message{tracking_id = Tid} = Result} =
         my_app_codec:decode_frame(BinObj),
 
-    %% Requester = proplist:get_value(Tid, Client),
-    ?LOG_DEBUG("Tid: ~p, Result: ~p", [Tid, Result]),
-    %% %% ok = gen_server:cast(Requester, Result),
 
-    {noreply, State
-     %% #state{client = proplist:delete(Tid, Client)}
-    };
+    Requester = proplists:get_value(Tid, Client),
+    ok = gen_server:cast(Requester, Result),
+
+    {noreply, State#state{client = proplists:delete(Tid, Client)}};
 handle_info(_Info, State) ->
     {noreply, State}.
 
