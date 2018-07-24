@@ -1,0 +1,4 @@
+## Name of the node
+-name benchmark-prod@benchmark-prod-ip
+## Cookie for distributed erlang
+-setcookie benchmark-cookie
