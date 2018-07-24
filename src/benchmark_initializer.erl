@@ -26,19 +26,3 @@ init(ToveriRef, NumberOfClients, ClientsStartedSoFar) ->
     gen_server:cast(Pid, {Request, ToveriRef}),
 
     init(ToveriRef, NumberOfClients, ClientsStartedSoFar + 1).
-
-
-%% init(ToveriRef, NumberOfClients, ClientsStartedSoFar)
-%%   when ClientsStartedSoFar rem 2 == 0 ->
-%%     {ok, Pid} = benchmark_client:start_link(),
-
-%%     gen_server:cast(Pid, {ping, ToveriRef}),
-
-%%     init(ToveriRef, NumberOfClients, ClientsStartedSoFar + 1);
-%% init(ToveriRef, NumberOfClients, ClientsStartedSoFar)
-%%   when ClientsStartedSoFar rem 2 =:= 0 ->
-%%     {ok, Pid} = benchmark_client:start_link(),
-
-%%     gen_server:cast(Pid, {fact, ToveriRef}),
-
-%%     init(ToveriRef, NumberOfClients, ClientsStartedSoFar + 1).
